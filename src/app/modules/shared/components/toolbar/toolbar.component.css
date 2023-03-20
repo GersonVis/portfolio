@@ -1,0 +1,32 @@
+.toolbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #D9D9D9;
+    background-color: white;
+    overflow: hidden;
+}
+.content-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.div-menu{
+    border-radius: 50% 50%;
+    background-color: #D9D9D9;
+    width: 8px;
+    height: 8px;
+    margin: 10px;
+}
+.content-image{
+    height: 70%;
+}
+.content-image-right{
+    display: flex;
+    justify-content: end;
+    width: 20%;
+}
+.image-menu-right{
+    width: 180px;
+    transform: scaleX(-1) translateX(-35%) rotate(25deg);
+}

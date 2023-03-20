@@ -11,15 +11,18 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
   declarations: [
     SidenavComponent,
     ToolbarComponent,
+    
   ],
   exports:[
     SidenavComponent,
+    ToolbarComponent,
     MaterialModule
   ],
   imports: [
     CommonModule,
     RouterModule,
     HttpClientModule,
+    MaterialModule
     
   ]
 })
