@@ -27,6 +27,62 @@
     width: 20%;
 }
 .image-menu-right{
-    width: 180px;
-    transform: scaleX(-1) translateX(-35%) rotate(25deg);
+    transform: scaleX(-1) translateY(76px) translateX(-35%);
+    height: 296px;
+    width: auto;
+
+}
+.toolbar-dos{
+    display: flex;
+    background-color: white;
+    padding: 10px;
+    height: 235px;
+    overflow: hidden;
+}
+.toolbar-dentro{
+    height: 215px; 
+    display: flex;
+    flex-direction: row;
+    background: #E4F0FA; 
+    width: 100%;
+    border-radius: 12px;
+    align-items: center;
+    overflow: hidden;
+}
+.dos{
+    overflow: hidden;
+
+}
+.content-menu{
+    display: flex;
+    align-items: start;
+    width: 80%;
+    height: 100%;
+    justify-content: start;
+    flex-direction: column;
+    padding: 14px;
+}
+.option-menu{
+    
+}
+.content-menu-ratio{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 20%;
+}
+.option-menu-item{
+    border-left: 12px;
+}
+.mat-mdc-list-item-title {
+    color: white;
+    padding-left: 12px;
+}
+.mat-mdc-list-item{
+    transition: background-color 1.5s ease;
+    border-radius: 8px;
+}
+.mat-mdc-list-item:hover{
+    background-color: #BEC8D0;
 }

@@ -16,7 +16,6 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
   exports:[
     SidenavComponent,
     ToolbarComponent,
-    MaterialModule
   ],
   imports: [
     CommonModule,
