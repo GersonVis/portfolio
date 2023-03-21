@@ -10,10 +10,10 @@ import { MainModule } from './modules/main/main.module';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    
   ],
   imports: [
     BrowserModule,

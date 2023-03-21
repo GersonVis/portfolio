@@ -1,0 +1,88 @@
+.toolbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #D9D9D9;
+    background-color: white;
+    overflow: hidden;
+}
+.content-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.div-menu{
+    border-radius: 50% 50%;
+    background-color: #D9D9D9;
+    width: 8px;
+    height: 8px;
+    margin: 10px;
+}
+.content-image{
+    height: 70%;
+}
+.content-image-right{
+    display: flex;
+    justify-content: end;
+    width: 20%;
+}
+.image-menu-right{
+    transform: scaleX(-1) translateY(76px) translateX(-35%);
+    height: 296px;
+    width: auto;
+
+}
+.toolbar-dos{
+    display: flex;
+    background-color: white;
+    padding: 10px;
+    height: 235px;
+    overflow: hidden;
+}
+.toolbar-dentro{
+    height: 215px; 
+    display: flex;
+    flex-direction: row;
+    background: #E4F0FA; 
+    width: 100%;
+    border-radius: 12px;
+    align-items: center;
+    overflow: hidden;
+}
+.dos{
+    overflow: hidden;
+
+}
+.content-menu{
+    display: flex;
+    align-items: start;
+    width: 80%;
+    height: 100%;
+    justify-content: start;
+    flex-direction: column;
+    padding: 14px;
+}
+.option-menu{
+    
+}
+.content-menu-ratio{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 20%;
+}
+.option-menu-item{
+    border-left: 12px;
+}
+.mat-mdc-list-item-title {
+    color: white;
+    padding-left: 12px;
+}
+.mat-mdc-list-item{
+    transition: background-color 1.5s ease;
+    border-radius: 8px;
+}
+.mat-mdc-list-item:hover{
+    background-color: #BEC8D0;
+}
