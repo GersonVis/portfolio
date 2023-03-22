@@ -4,19 +4,24 @@ export const menuOptions: any = {
         name: "inicio",
         title: "Inicio",
         path: "/inicio",
-        active: false
+        active: false,
+        info: `Parte de bienvenida al portafolio
+        se muestra el nombre del propietario
+        y el stack principal`
     },
     proyectos: {
         name: "proyectos",
         title: "Proyectos",
         path: "/croyectos",
-        active: false
+        active: false,
+        info: ""
     },
     contactos: {
         name: "contactos",
         title: "Contactos",
         path: "/contactos",
-        active: false
+        active: false,
+        info: ""
     }
 }
    
@@ -26,5 +31,6 @@ export interface MenuOption{
     name:string,
     title: string
     path:string,
-    active: boolean
+    active: boolean,
+    info: string
 }
