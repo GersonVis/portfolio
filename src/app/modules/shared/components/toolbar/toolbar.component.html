@@ -1,27 +1,28 @@
 <mat-toolbar *ngIf="toolbarBaseVisible" class="toolbar" (mouseover)="toolbarOver($event)">
-  <div style="width: 20%;" class="content-image">
-    <img src="assets/images/templo.png" height="90%">
+  <div style="width: 20%;display: flex;height: 100%;align-items: center;" class="content-image">
+    <img src="assets/images/templo.png" style="height: 70%">
   </div>
-  <div style="width: 60%;" class="content-menu">
-      <div class="div-menu"></div>
-      <div class="div-menu"></div>
-      <div class="div-menu"></div>
-      <div class="div-menu"></div>
+  <div style="width: 60%;" class="content-menu-firts">
+      <div *ngFor="let option of prueba(menuOptions)" [ngStyle]="{'background':option.active ? 'red':'#D3DFE0'}" class="div-menu"></div>
   </div>
-  <div class="content-image-right">
-    <img class="image-menu-right" src="assets/images/apolo.png">
+  <div class="content-image-right-uno">
+    <img class="image-menu-right-uno" src="assets/images/apolo.png">
   </div>
 </mat-toolbar>
 
 <mat-toolbar  *ngIf="toolbarBaseVisible==false" class="toolbar-dos" (mouseleave)="toolbarOut($event)">
  <div class="toolbar-dentro" >
-  <div style="width: 80%;" class="content-menu">
+  <div style="width: 25%;" class="content-menu">
     <mat-list class="content-menu-ratio">
       <div mat-subheader style="font-weight: bold;">Menú</div>
-      <mat-list-item class="option-menu-item" (click)="optionClick($event)" *ngFor="let option of prueba(menuOptions)">
+      <mat-list-item [ngStyle]="{'background':option.active ? '#D3DFE0':''}" class="option-menu-item" (click)="optionClick($event)" *ngFor="let option of prueba(menuOptions)">
         <div matListItemTitle>{{option.title}}</div>
      </mat-list-item>
     </mat-list>
+  </div>
+  <div class="content-info">
+    <p class="title-info" ><b>{{imOn.title}}</b></p>
+   {{imOn.info}}
   </div>
   <div class="content-image-right dos">
     <img class="image-menu-right" src="assets/images/sparta.png">

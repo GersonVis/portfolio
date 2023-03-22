@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {menuOptions, MenuOption} from "../../constans/constantes-navegacion"
 
 @Component({
@@ -8,9 +8,15 @@ import {menuOptions, MenuOption} from "../../constans/constantes-navegacion"
 })
 export class ToolbarComponent implements OnInit{
   menuOptions: any
+  anterior: any = null
+  imOn: MenuOption 
+  @Input() optionSelect=""
   constructor(){
     this.menuOptions=menuOptions
-    this.menuOptions["inicio"].active=true
+    this.imOn=menuOptions['inicio']
+  }
+  selectOption(option: string){
+    this.menuOptions[option].active=true
   }
   toolbarStyle={
     "min-height": "100px",
@@ -20,25 +26,27 @@ export class ToolbarComponent implements OnInit{
   prueba(json: any): Array<any>{
      return Object.values(json)
   }
-  toolbarBaseVisible:boolean = false
+  toolbarBaseVisible:boolean = true
   
   ngOnInit(): void {
-
-     console.log(menuOptions)
+    this.menuOptions[this.optionSelect].active=true
+    this.imOn=menuOptions[this.optionSelect]
   }
   
   toolbarOver(event: any){
-   
-   // this.toolbarBaseVisible=false
+    this.toolbarBaseVisible=false
   }
   toolbarOut(event: any){
-    console.log("salio")
-    //this.toolbarBaseVisible=true
+    this.toolbarBaseVisible=true
   }
   optionClick(event: any){
-    console.log(event)
     let item:any = event.currentTarget
-    item.style.background="red"
+    item.style.background="#D3DFE0"
+    if(this.anterior){
+      this.anterior.style.background=""
+    }
+    this.anterior=item
+    
   }
   
 }
