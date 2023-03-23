@@ -36,9 +36,45 @@
     display: flex;
     background-color: white;
     padding: 10px;
-    height: 235px;
+   
+    overflow: hidden;
+    animation-duration: 1.5s;
+    animation-name: lanzamiento;
+    animation-fill-mode: forwards;
     overflow: hidden;
 }
+@keyframes lanzamiento{
+    
+    to{
+        height:235px
+    }
+}
+
+.toolbar-dos.hide{
+    animation-duration: .5s;
+    animation-name: hide-toolbar;
+    animation-fill-mode: forwards;
+}
+@keyframes hide-toolbar {
+    to{
+        height: 50px;
+    }
+}
+
+.toolbar-dentro.hide{
+    animation-duration: .5s;
+    animation-name: hide-toolbar-content;
+    animation-fill-mode: forwards;
+}
+@keyframes hide-toolbar-content {
+    to{
+        background-color: #e4f0fa00;
+    }
+}
+
+
+
+
 .toolbar-dentro{
     height: 215px; 
     display: flex;
@@ -49,6 +85,16 @@
     align-items: center;
     overflow: hidden;
 }
+
+
+.red{
+    background-color: red!important;
+}
+
+
+
+
+
 .dos{
     overflow: hidden;
     flex-grow: 1;

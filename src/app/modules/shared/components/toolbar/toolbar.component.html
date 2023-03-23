@@ -10,8 +10,8 @@
   </div>
 </mat-toolbar>
 
-<mat-toolbar  *ngIf="toolbarBaseVisible==false" class="toolbar-dos" (mouseleave)="toolbarOut($event)">
- <div class="toolbar-dentro" >
+<mat-toolbar  *ngIf="toolbarBaseVisible==false" [ngClass]="{'hide':varAnimation.toolbarHide}" class="toolbar-dos" (mouseleave)="toolbarOut($event, toolBar)" #toolBar>
+ <div class="toolbar-dentro" [ngClass]="{'hide':varAnimation.toolbarHide}" >
   <div style="width: 25%;" class="content-menu">
     <mat-list class="content-menu-ratio">
       <div mat-subheader style="font-weight: bold;">Menú</div>
@@ -25,7 +25,8 @@
    {{imOn.info}}
   </div>
   <div class="content-image-right dos">
-    <img class="image-menu-right" src="assets/images/sparta.png">
+    <img class="image-menu-right" [attr.src]="imOn.img">
   </div>
  </div>
 </mat-toolbar>
+<button #myButton></button>
