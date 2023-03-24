@@ -15,18 +15,17 @@
   <div style="width: 25%;" class="content-menu">
     <mat-list class="content-menu-ratio">
       <div mat-subheader style="font-weight: bold;">Menú</div>
-      <mat-list-item [ngStyle]="{'background':option.active ? '#D3DFE0':''}" class="option-menu-item" (click)="optionClick($event)" *ngFor="let option of prueba(menuOptions)">
+      <mat-list-item [attr.item-name]="option.name" [ngStyle]="{'background':option.active ? '#D3DFE0':''}" (mouseover)="itemListOver($event)" class="option-menu-item" (click)="optionClick($event)" *ngFor="let option of prueba(menuOptions)">
         <div matListItemTitle>{{option.title}}</div>
      </mat-list-item>
     </mat-list>
   </div>
   <div class="content-info">
-    <p class="title-info" ><b>{{imOn.title}}</b></p>
-   {{imOn.info}}
+    <p class="title-info" ><b>{{contentOption.title}}</b></p>
+   {{contentOption.info}}
   </div>
   <div class="content-image-right dos">
-    <img class="image-menu-right" [attr.src]="imOn.img">
+    <img class="image-menu-right" [attr.src]="contentOption.img">
   </div>
  </div>
 </mat-toolbar>
-<button #myButton></button>

@@ -12,7 +12,14 @@ export class ToolbarComponent implements OnInit{
 
   menuOptions: any
   anterior: any = null
-  imOn: MenuOption
+  imOn: MenuOption = {
+    name: "",
+    title: "",
+    path:"",
+    active: true,
+    info: "",
+    img: ""
+  }
   evtToolbarClose: any = null
   contentOption: any = {} 
   @Input() optionSelect=""
@@ -20,20 +27,23 @@ export class ToolbarComponent implements OnInit{
 
 
   varAnimation: any={
-    toolbarHide: false,
+    toolbarHide: true,
     timeHide: 450 
   }
   constructor(private renderer: Renderer2){
     this.menuOptions=menuOptions
-    this.imOn=menuOptions['inicio']
-    
+   
   }
   ngOnInit(): void {
     this.menuOptions[this.optionSelect].active=true
     this.imOn=menuOptions[this.optionSelect]
-    this.contentOption["imgSelected"]=this.imOn.img
-    this.contentOption["imgTitle"]=this.imOn.img
-    this.contentOption["imgInfo"]=this.imOn.img
+    this.overOptionInfo(this.optionSelect)
+  }
+  overOptionInfo(optionSelect: string){
+    let option: MenuOption = this.menuOptions[optionSelect]
+    this.contentOption["img"]=option.img
+    this.contentOption["title"]=option.title
+    this.contentOption["info"]=option.info
   }
   selectOption(option: string){
     this.menuOptions[option].active=true
@@ -74,6 +84,7 @@ export class ToolbarComponent implements OnInit{
     }
     this.evtToolbarClose=setTimeout(function(){
       main.toolbarBaseVisible=true
+      main.overOptionInfo(main.imOn.name)
     }, this.varAnimation.timeHide)
   }
   optionClick(event: any){
@@ -86,7 +97,12 @@ export class ToolbarComponent implements OnInit{
     
   }
   overOption($event: any){
-
+    
+  }
+  itemListOver(event: any){
+    let item: any = event.currentTarget
+    let optionName:string = item.attributes["item-name"].value
+    this.overOptionInfo(optionName)
   }
   
 }
