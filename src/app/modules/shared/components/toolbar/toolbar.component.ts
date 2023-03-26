@@ -24,6 +24,7 @@ export class ToolbarComponent implements OnInit{
   contentOption: any = {} 
   @Input() optionSelect=""
 
+  
 
 
   varAnimation: any={
@@ -66,16 +67,16 @@ export class ToolbarComponent implements OnInit{
   }
   toolbarOut(event: any, toolBar: any){
     let item: any = event.currentTarget
-
-    console.log(item.clientHeight)
     let height: number = parseInt(item.clientHeight)
     this.hiddenToolbar(item, height)
   }
   showToolbar(){
     this.varAnimation.toolbarHide=false
     this.toolbarBaseVisible=false
+    console.log("entrando")
   }
   hiddenToolbar(toolBar: any, height: number){
+    console.log("saliendo")
     let main=this
     this.varAnimation.toolbarHide=true
     toolBar.style.height=height+"px"
@@ -103,6 +104,12 @@ export class ToolbarComponent implements OnInit{
     let item: any = event.currentTarget
     let optionName:string = item.attributes["item-name"].value
     this.overOptionInfo(optionName)
+  }
+  toolbarOneLeave(event:any){
+    console.log("saliendo toolbar 1")
+  }
+  toolbarTwoOver(event: any){
+    console.log("dentro toolbar dos")
   }
   
 }
