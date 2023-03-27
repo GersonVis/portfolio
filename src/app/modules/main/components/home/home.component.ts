@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
     let classes = classItem.replaceAll(" ", ".")
     let itemsClass = document.documentElement.querySelectorAll(`.${classes}`)
     itemsClass.forEach((element: any) => {
-      element.style.fill = "red"
+      element.style.fill = "#c9c9c9"
     })
     htmlDirect.innerText = classItem
   }
@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
       let classes = classItem.replaceAll(" ", ".")
       let itemsClass = document.documentElement.querySelectorAll(`.${classes}`)
       itemsClass.forEach((element: any) => {
-        element.style.fill = "#c9c9c9"
+        element.style.fill = "#ececec"
       })
       return
     }
