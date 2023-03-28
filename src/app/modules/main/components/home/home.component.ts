@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,20 @@ export class HomeComponent implements OnInit {
   svgGlobal: any
   countriesOn: Array<any> = []
   infoRectBoolean: boolean = false
+  categoryForms: FormGroup
   @ViewChild('rectInfo') rectInfo: any
-  constructor() {
-
+  @ViewChild('btnSend') btnSend: any
+  constructor(private form: FormBuilder) {
+     this.categoryForms = this.form.group({
+       message: ['', Validators.required]  
+     })
+  }
+  //events
+  clickSend(evt: any){
+    let data = {
+      name: this.categoryForms.get("name")?.value,
+      description: this.categoryForms.get("description")?.value
+    }
   }
   ngOnInit(): void {
     this.svgGlobal = document.getElementsByTagName('svg')[0]

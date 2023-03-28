@@ -74,8 +74,11 @@
 .text-chat::placeholder{
   
 }
+.content-message-input{
+    min-width: 100%;
+}
 .chat{
-    height: 40px;
+   
     width: 100%;
    
     margin-bottom: 8px;
@@ -101,15 +104,17 @@
 
 }
 .cente-chat-img:hover{
-    border-radius: 50% 50%;
-    background-color: red;
+    
+    background-color: #BEC8D0;
 }
 .cente-chat-img{
-   transition: all 1.5s;
-   
+   transition: all .3s;
+   border-radius: 50% 50%;
     
     width: 34px;
     height: 34px;
+    max-width: 34px;
+    max-height: 34px;
     display: flex;
     justify-content: center;
     align-items: center;
