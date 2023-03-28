@@ -68,15 +68,19 @@
     border: 0;
     margin: 0;
     padding-left: 14px;
+    border: 1px #EEEEEE solid;
   
 }
 .text-chat::placeholder{
   
 }
+.content-message-input{
+    min-width: 100%;
+}
 .chat{
-    height: 40px;
+   
     width: 100%;
-    border: 1px #EEEEEE solid;
+   
     margin-bottom: 8px;
     position: relative;
     display: flex;
@@ -96,12 +100,21 @@
     align-items: center;
     right: 0;
     top: 0;
+    margin: 2px;
 
 }
+.cente-chat-img:hover{
+    
+    background-color: #BEC8D0;
+}
 .cente-chat-img{
-    border-radius: 50% 50%;
+   transition: all .3s;
+   border-radius: 50% 50%;
+    
     width: 34px;
     height: 34px;
+    max-width: 34px;
+    max-height: 34px;
     display: flex;
     justify-content: center;
     align-items: center;

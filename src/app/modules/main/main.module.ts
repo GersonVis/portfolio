@@ -7,6 +7,7 @@ import { MainComponent } from './main/main.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../shared/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +20,9 @@ import { MaterialModule } from '../shared/material.module';
     CommonModule,
     SharedModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule 
   ],
   exports:[
     
