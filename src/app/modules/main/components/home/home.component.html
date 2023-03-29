@@ -14,13 +14,17 @@
             </div>
             <div class="content-chat-principal">
                 <div class="chat">
-          
-                        <form [formGroup]="categoryForms" style="min-width: 100%">
-                            <mat-form-field class="content-message-input">
-                                <input matInput type="text" formControlName="message" placeholder="Escribe un mensaje" class="text-chat">
-                            </mat-form-field>
-                        </form>
-                    
+
+                    <form [formGroup]="categoryForms" style="min-width: 100%; display: flex">
+                        <div class="content-inpt-name" [ngClass]="{'content-inpt-active': inputContentNameData.classBoolean.active}">
+                            <input id="userEmail" matInput type="text" formControlName="email" placeholder="Escribe tu correo"
+                            class="text-chat-name" #inputEmail>
+                        </div>
+                        <input matInput type="text" formControlName="message" placeholder="Escribe un mensaje"
+                            class="text-chat" (focus)="evtFocusMesage($event)">
+
+                    </form>
+
 
 
                     <div class="button-chat">
