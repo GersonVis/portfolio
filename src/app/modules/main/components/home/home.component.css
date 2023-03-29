@@ -63,13 +63,16 @@
     flex-direction: column;
 }
 .text-chat{
-    width: 100%;
+    flex-grow: 1;
     height: 100%;
     border: 0;
     margin: 0;
     padding-left: 14px;
     border: 1px #EEEEEE solid;
   
+}
+.text-chat-name{
+    
 }
 .text-chat::placeholder{
   
@@ -78,7 +81,7 @@
     min-width: 100%;
 }
 .chat{
-   
+    height: 40px;
     width: 100%;
    
     margin-bottom: 8px;
@@ -191,4 +194,45 @@ path:hover::after{
 
 .invisible{
     visibility: hidden;
+}
+
+
+/*clases chat*/
+.text-chat-name{
+    border: 1px #EEEEEE solid;
+    width: 100%;
+    height: 100%;
+   
+}
+
+.text-chat-name::after {
+    content: "Hola";
+    position: absolute;
+    top: 0px;
+    transform: translateY(-100%);
+  }
+.text-chat-name::before{
+    content: "Name";
+    position: absolute;
+    top: 0px;
+    transform: translateY(-100%);
+    left: 0px;
+    width: 50px;
+    height: 50px;
+}
+.active-chat-name{
+    
+}
+
+.content-inpt-name{
+    width: 0%;
+    height: 0%;
+    position: relative;
+    margin-right: 0px;
+}
+.content-inpt-active{
+    width: 20%;
+    height: 100%;
+    padding-right: 8px;
+    transition: width 0.5s;
 }

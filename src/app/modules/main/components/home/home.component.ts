@@ -13,21 +13,55 @@ export class HomeComponent implements OnInit {
   categoryForms: FormGroup
   @ViewChild('rectInfo') rectInfo: any
   @ViewChild('btnSend') btnSend: any
+  @ViewChild('inputMessage') inputMessage: any
+  @ViewChild('inputEmail') inputEmail: any
+
+  inputNameWithJs: any
+  inputNameData: any={
+    style:{
+      inactive:  "visibility: hidden; width: 0px"
+    },
+    classBoolean: {
+      active: false
+    }
+  }
+  inputContentNameData: any={
+    style:{
+      inactive:  "visibility: hidden; width: 0px"
+    },
+    classBoolean: {
+      active: false
+    }
+  }
+
   constructor(private form: FormBuilder) {
      this.categoryForms = this.form.group({
-       message: ['', Validators.required]  
+       message: ['', Validators.required],
+       email: ['', Validators.required, Validators.email],
      })
+     
   }
+  
   //events
+  evtFocusMesage(event: any){
+      this.inputContentNameData.classBoolean.active=true
+      
+      if(this.inputEmail.nativeElement.value==""){
+        this.inputEmail.nativeElement.focus()
+      }
+  }
+
   clickSend(evt: any){
-    let data = {
-      name: this.categoryForms.get("name")?.value,
-      description: this.categoryForms.get("description")?.value
+   let data = {
+      message: this.categoryForms.get("message")?.value,
+      email: this.categoryForms.get("email")?.value
     }
+    console.log(data)
   }
   ngOnInit(): void {
     this.svgGlobal = document.getElementsByTagName('svg')[0]
     this.chargeMap(this.svgGlobal)
+    this.inputNameWithJs=document.getElementById("nameUser")
   }
   optionMenu: string = "inicio"
   chargeMap(svg: any) {
