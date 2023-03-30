@@ -236,3 +236,7 @@ path:hover::after{
     padding-right: 8px;
     transition: width 0.5s;
 }
+
+.invalite-email{
+    background-color: rgb(255, 182, 182);
+}

@@ -15,10 +15,14 @@
             <div class="content-chat-principal">
                 <div class="chat">
 
-                    <form [formGroup]="categoryForms" style="min-width: 100%; display: flex">
-                        <div class="content-inpt-name" [ngClass]="{'content-inpt-active': inputContentNameData.classBoolean.active}">
+                    <form [formGroup]="chatForms" style="min-width: 100%; display: flex">
+                        <div class="content-inpt-name" 
+                        [ngClass]="{'content-inpt-active': inputContentNameData.classBoolean.active}">
                             <input id="userEmail" matInput type="text" formControlName="email" placeholder="Escribe tu correo"
-                            class="text-chat-name" #inputEmail>
+                            class="text-chat-name"
+                            (input)="evtInputEmail($event)"
+                           [ngClass]="{'invalite-email': inputEmailData.classBoolean.invalidate.state}"
+                            #inputEmail>
                         </div>
                         <input matInput type="text" formControlName="message" placeholder="Escribe un mensaje"
                             class="text-chat" (focus)="evtFocusMesage($event)">

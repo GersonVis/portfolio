@@ -10,7 +10,10 @@ export class HomeComponent implements OnInit {
   svgGlobal: any
   countriesOn: Array<any> = []
   infoRectBoolean: boolean = false
-  categoryForms: FormGroup
+  chatForms: FormGroup
+  ger:any ={
+    nombre: "gerson"
+  }
   @ViewChild('rectInfo') rectInfo: any
   @ViewChild('btnSend') btnSend: any
   @ViewChild('inputMessage') inputMessage: any
@@ -25,6 +28,9 @@ export class HomeComponent implements OnInit {
       active: false
     }
   }
+  toString(data: any): string{
+    return data
+  }
   inputContentNameData: any={
     style:{
       inactive:  "visibility: hidden; width: 0px"
@@ -33,11 +39,26 @@ export class HomeComponent implements OnInit {
       active: false
     }
   }
+  inputEmailData: any={
+    style:{
+      inactive:  "visibility: hidden; width: 0px"
+    },
+    classBoolean: {
+      active: {
+        class: "active-email-data",
+        state: false
+      },
+      invalidate:{
+        class: "invalite-email",
+        state: false
+      }
+    }
+  }
 
   constructor(private form: FormBuilder) {
-     this.categoryForms = this.form.group({
+     this.chatForms = this.form.group({
        message: ['', Validators.required],
-       email: ['', Validators.required, Validators.email],
+       email: ['', [Validators.required, Validators.email]],
      })
      
   }
@@ -45,18 +66,35 @@ export class HomeComponent implements OnInit {
   //events
   evtFocusMesage(event: any){
       this.inputContentNameData.classBoolean.active=true
-      
-      if(this.inputEmail.nativeElement.value==""){
+      console.log(this.chatForms.get("email")?.errors)
+      if(!this.validateEmail()){
         this.inputEmail.nativeElement.focus()
       }
+  }
+  evtInputEmail(event: any){
+    this.validateEmail()
+   // alert("pulsado")
+  }
+  validateEmail(): boolean{
+    if(this.chatForms.get("email")?.errors){
+      this.inputEmailData.classBoolean.invalidate.state=true
+      return false
+    }
+    this.inputEmailData.classBoolean.invalidate.state=false
+    return true
+  }
+  emailInvalite(){
+
   }
 
   clickSend(evt: any){
    let data = {
-      message: this.categoryForms.get("message")?.value,
-      email: this.categoryForms.get("email")?.value
+      message: this.chatForms.get("message")?.value,
+      email: this.chatForms.get("email")?.value
     }
-    console.log(data)
+   // console.log("errores", this.chatForms.get("email")?.errors, "fin errores")
+   // console.log(this.chatForms.status)
+
   }
   ngOnInit(): void {
     this.svgGlobal = document.getElementsByTagName('svg')[0]
