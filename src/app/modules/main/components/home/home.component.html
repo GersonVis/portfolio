@@ -1,5 +1,6 @@
-<app-toolbar [optionSelect]="optionMenu"></app-toolbar>
-<div>
+
+<div class="main">
+    <app-toolbar [optionSelect]="optionMenu"></app-toolbar>
     <div class="content-principal">
         <div class="home left">
             <div class="home-content-info">
@@ -12,20 +13,30 @@
                     FULLSTACK
                 </div>
             </div>
-            <div class="content-chat-principal">
-                <div class="chat">
-
-                    <form [formGroup]="categoryForms" style="min-width: 100%; display: flex">
-                        <div class="content-inpt-name" [ngClass]="{'content-inpt-active': inputContentNameData.classBoolean.active}">
+            <div class="content-msg-ok">
+                    <div class="text-msg-ok">
+                        <p style="text-align: center">Mensaje</p>
+                        <div style="font-size: 24pt;" class="priority-higth">Enviado</div>
+                    </div>
+                    <div>
+                        <img id="imgSend"src="assets/images/hermes.png">
+                    </div>
+            </div>
+            <div class="content-chat-principal" style="visibility: hidden; height: 0%;" #divMessageSend>
+                <div class="chat"  >
+                    <form [formGroup]="chatForms" style="min-width: 100%; display: flex">
+                        <div class="content-inpt-name" 
+                        [ngClass]="{'content-inpt-active': inputContentNameData.classBoolean.active}">
                             <input id="userEmail" matInput type="text" formControlName="email" placeholder="Escribe tu correo"
-                            class="text-chat-name" #inputEmail>
+                            class="text-chat-name"
+                            (input)="evtInputEmail($event)"
+                           [ngClass]="{'invalite-email': inputEmailData.classBoolean.invalidate.state}"
+                            #inputEmail>
                         </div>
                         <input matInput type="text" formControlName="message" placeholder="Escribe un mensaje"
                             class="text-chat" (focus)="evtFocusMesage($event)">
 
                     </form>
-
-
 
                     <div class="button-chat">
                         <div class="cente-chat-img" (click)="clickSend($event)" #btnSend>

@@ -10,58 +10,100 @@ export class HomeComponent implements OnInit {
   svgGlobal: any
   countriesOn: Array<any> = []
   infoRectBoolean: boolean = false
-  categoryForms: FormGroup
+  chatForms: FormGroup
+  ger: any = {
+    nombre: "gerson"
+  }
   @ViewChild('rectInfo') rectInfo: any
   @ViewChild('btnSend') btnSend: any
   @ViewChild('inputMessage') inputMessage: any
   @ViewChild('inputEmail') inputEmail: any
+  @ViewChild('divMessageSend') divMessageSend: any
 
   inputNameWithJs: any
-  inputNameData: any={
-    style:{
-      inactive:  "visibility: hidden; width: 0px"
+  inputNameData: any = {
+    style: {
+      inactive: "visibility: hidden; width: 0px"
     },
     classBoolean: {
       active: false
     }
   }
-  inputContentNameData: any={
-    style:{
-      inactive:  "visibility: hidden; width: 0px"
+  toString(data: any): string {
+    return data
+  }
+  inputContentNameData: any = {
+    style: {
+      inactive: "visibility: hidden; width: 0px"
     },
     classBoolean: {
       active: false
+    }
+  }
+  inputEmailData: any = {
+    style: {
+      inactive: "visibility: hidden; width: 0px"
+    },
+    classBoolean: {
+      active: {
+        class: "active-email-data",
+        state: false
+      },
+      invalidate: {
+        class: "invalite-email",
+        state: false
+      }
     }
   }
 
   constructor(private form: FormBuilder) {
-     this.categoryForms = this.form.group({
-       message: ['', Validators.required],
-       email: ['', Validators.required, Validators.email],
-     })
-     
-  }
-  
-  //events
-  evtFocusMesage(event: any){
-      this.inputContentNameData.classBoolean.active=true
-      
-      if(this.inputEmail.nativeElement.value==""){
-        this.inputEmail.nativeElement.focus()
-      }
+    this.chatForms = this.form.group({
+      message: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+    })
+
   }
 
-  clickSend(evt: any){
-   let data = {
-      message: this.categoryForms.get("message")?.value,
-      email: this.categoryForms.get("email")?.value
+  //events
+  evtFocusMesage(event: any) {
+    this.inputContentNameData.classBoolean.active = true
+    console.log(this.chatForms.get("email")?.errors)
+    if (!this.validateEmail()) {
+      this.inputEmail.nativeElement.focus()
     }
-    console.log(data)
+  }
+  evtInputEmail(event: any) {
+    this.validateEmail()
+    // alert("pulsado")
+  }
+  validateEmail(): boolean {
+    if (this.chatForms.get("email")?.errors) {
+      this.inputEmailData.classBoolean.invalidate.state = true
+      return false
+    }
+    this.inputEmailData.classBoolean.invalidate.state = false
+    return true
+  }
+  emailInvalite() {
+
+  }
+
+  clickSend(evt: any) {
+    let data = {
+      message: this.chatForms.get("message")?.value,
+      email: this.chatForms.get("email")?.value
+    }
+    if (this.chatForms.status == "VALID") {
+      alert("formulario correcto")
+    }
+  }
+  messageSendOk(){
+   // this.divMessageSend.nativeElement
   }
   ngOnInit(): void {
     this.svgGlobal = document.getElementsByTagName('svg')[0]
     this.chargeMap(this.svgGlobal)
-    this.inputNameWithJs=document.getElementById("nameUser")
+    this.inputNameWithJs = document.getElementById("nameUser")
   }
   optionMenu: string = "inicio"
   chargeMap(svg: any) {
