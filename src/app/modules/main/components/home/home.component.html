@@ -1,5 +1,6 @@
-<app-toolbar [optionSelect]="optionMenu"></app-toolbar>
-<div>
+
+<div class="main">
+    <app-toolbar [optionSelect]="optionMenu"></app-toolbar>
     <div class="content-principal">
         <div class="home left">
             <div class="home-content-info">
@@ -12,9 +13,17 @@
                     FULLSTACK
                 </div>
             </div>
-            <div class="content-chat-principal">
-                <div class="chat">
-
+            <div class="content-msg-ok">
+                    <div class="text-msg-ok">
+                        <p style="text-align: center">Mensaje</p>
+                        <div style="font-size: 24pt;" class="priority-higth">Enviado</div>
+                    </div>
+                    <div>
+                        <img id="imgSend"src="assets/images/hermes.png">
+                    </div>
+            </div>
+            <div class="content-chat-principal" style="visibility: hidden; height: 0%;" #divMessageSend>
+                <div class="chat"  >
                     <form [formGroup]="chatForms" style="min-width: 100%; display: flex">
                         <div class="content-inpt-name" 
                         [ngClass]="{'content-inpt-active': inputContentNameData.classBoolean.active}">
@@ -28,8 +37,6 @@
                             class="text-chat" (focus)="evtFocusMesage($event)">
 
                     </form>
-
-
 
                     <div class="button-chat">
                         <div class="cente-chat-img" (click)="clickSend($event)" #btnSend>

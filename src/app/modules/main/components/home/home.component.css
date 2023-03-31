@@ -1,11 +1,16 @@
+.main{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+}
 .content-principal{
     display: flex;
     width: 100%;
     height: 100%;
-   
+    overflow: hidden;
 }
 .home{
-   
     display: flex;
     align-items: start;
     justify-content:start;
@@ -14,12 +19,12 @@
 }
 .left{
     min-width: 50%;
-    padding: 64px;
+    padding: 0px 64px 0px 64px;
 }
 .right{
     display: flex;
     align-items: start;
-    justify-content: center;
+    padding-top: 48px;
     justify-items: center;
     flex-direction: column;
     flex-grow: 1;
@@ -27,9 +32,8 @@
 
 .home-content-info{
     width: 100%;
-    height: 60%;
     font-size: 30pt;
-    margin-bottom: 64px;
+    margin-top: 48px;
 }
 .content-welcome{
     margin: 0;
@@ -239,4 +243,29 @@ path:hover::after{
 
 .invalite-email{
     background-color: rgb(255, 182, 182);
+}
+
+.content-msg-ok{
+    display: flex;
+    flex-direction: row;
+    height: 40%;
+    width: 100%;
+    margin-top: 64px;
+}
+
+
+/*Styles generals*/
+.priority-higth{
+    border-radius: 8px;
+    background-color: #AAEDE5;
+    display: initial;
+    font-weight: bold;
+}
+#imgSend{
+    height: 100%;
+}
+.text-msg-ok{
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 24px
 }
