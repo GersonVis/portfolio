@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('inputMessage') inputMessage: any
   @ViewChild('inputEmail') inputEmail: any
   @ViewChild('divMessageSend') divMessageSend: any
+  boolMessageSend: boolean= false
 
   inputNameWithJs: any
   inputNameData: any = {
@@ -94,10 +95,11 @@ export class HomeComponent implements OnInit {
       email: this.chatForms.get("email")?.value
     }
     if (this.chatForms.status == "VALID") {
-      alert("formulario correcto")
+      this.messageSendOk()
     }
   }
   messageSendOk(){
+    this.boolMessageSend=true
    // this.divMessageSend.nativeElement
   }
   ngOnInit(): void {
