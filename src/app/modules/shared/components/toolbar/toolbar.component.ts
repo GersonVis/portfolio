@@ -23,7 +23,7 @@ export class ToolbarComponent implements OnInit{
   evtToolbarClose: any = null
   contentOption: any = {} 
   @Input() optionSelect=""
-
+  intoToolbar: Boolean = false
   
 
 
@@ -63,9 +63,26 @@ export class ToolbarComponent implements OnInit{
   
   
   toolbarOver(event: any){
-    this.showToolbar()
+    this.intoToolbar=true
+    let main = this
+    setTimeout(function(){
+      if(main.intoToolbar){
+        console.log("toolbar", main.intoToolbar)
+        main.showToolbar()
+      }
+    }, 500)
+    
+  }
+  toolbarOneOut(event: any){
+    this.intoToolbar=false
+    console.log("toolbarout", this.intoToolbar)
+  }
+  sleepCheck(){
+    
   }
   toolbarOut(event: any, toolBar: any){
+    this.intoToolbar=false
+    console.log("toolbar out", this.intoToolbar)
     let item: any = event.currentTarget
     let height: number = parseInt(item.clientHeight)
     this.hiddenToolbar(item, height)
@@ -76,7 +93,6 @@ export class ToolbarComponent implements OnInit{
     console.log("entrando")
   }
   hiddenToolbar(toolBar: any, height: number){
-    console.log("saliendo")
     let main=this
     this.varAnimation.toolbarHide=true
     toolBar.style.height=height+"px"
@@ -110,6 +126,10 @@ export class ToolbarComponent implements OnInit{
   }
   toolbarTwoOver(event: any){
     console.log("dentro toolbar dos")
+  }
+
+  moveMouseToolbar(event: any){
+    //alert("moviendo")
   }
   
 }
