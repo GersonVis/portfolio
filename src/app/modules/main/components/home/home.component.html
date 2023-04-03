@@ -1,4 +1,3 @@
-
 <div class="main">
     <app-toolbar [optionSelect]="optionMenu"></app-toolbar>
     <div class="content-principal">
@@ -13,16 +12,16 @@
                     FULLSTACK
                 </div>
             </div>
-            <div class="content-msg-ok">
+            <div class="content-msg-ok" *ngIf="!boolMessageSend">
                     <div class="text-msg-ok">
                         <p style="text-align: center">Mensaje</p>
                         <div style="font-size: 24pt;" class="priority-higth">Enviado</div>
                     </div>
-                    <div>
-                        <img id="imgSend"src="assets/images/hermes.png">
+                    <div class="sprite-msg-ok">
+                        <img id="imgSend"src="assets/images/hermessecuencia.png">
                     </div>
             </div>
-            <div class="content-chat-principal" style="visibility: hidden; height: 0%;" #divMessageSend>
+            <div class="content-chat-principal" *ngIf="!boolMessageSend==false" #divMessageSend>
                 <div class="chat"  >
                     <form [formGroup]="chatForms" style="min-width: 100%; display: flex">
                         <div class="content-inpt-name" 
@@ -1601,7 +1600,7 @@
             </div>
         </div>
     </div>
-
+    <app-message></app-message>
 </div>
 <div #rectInfo [ngClass]="{'visible':infoRectBoolean}" class="info-movil">
 

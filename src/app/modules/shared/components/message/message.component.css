@@ -1,0 +1,10 @@
+.parent{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 50% 50%;
+    width: 75px;
+    height: 75px;
+    background-color: #8ED5DE;
+    transform: translateX(45%) translateY(45%);
+}

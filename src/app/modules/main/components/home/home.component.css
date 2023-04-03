@@ -65,6 +65,7 @@
     align-items: center;
     width: 80%;
     flex-direction: column;
+    margin-top: 64px;
 }
 .text-chat{
     flex-grow: 1;
@@ -261,11 +262,24 @@ path:hover::after{
     display: initial;
     font-weight: bold;
 }
-#imgSend{
-    height: 100%;
-}
+
 .text-msg-ok{
     margin-top: 5%;
     margin-left: 10%;
     margin-right: 24px
+}
+
+/*sprites*/
+.sprite-msg-ok{
+    max-width: 230px;
+    overflow: hidden;
+    display: flex;
+}
+#imgSend{
+  animation: imgsendmove 0.8s steps(2) infinite;
+}
+@keyframes imgsendmove{
+    to{
+        transform: translateX(-100%);
+    }
 }

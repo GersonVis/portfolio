@@ -5,17 +5,20 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { MessageComponent } from './components/message/message.component';
 
 
 @NgModule({
   declarations: [
     SidenavComponent,
     ToolbarComponent,
+    MessageComponent,
     
   ],
   exports:[
     SidenavComponent,
     ToolbarComponent,
+    MessageComponent
   ],
   imports: [
     CommonModule,
