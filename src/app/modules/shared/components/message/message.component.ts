@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent {
-
+   isVisible: Boolean = true
+   showMessages(event: any){
+    this.isVisible=false
+   }
 }
