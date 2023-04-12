@@ -1,3 +1,18 @@
-<div class="parent">
+<div *ngIf="!isVisible" class="parent" (click)="showMessages($event)">
 
+</div>
+<div  *ngIf="isVisible" class="parent-message">
+     <div class="message-content perfil">
+        <div id="carduser">
+            <div class="content-profile-img" >
+                <img id="img-profile" src="assets/icons/profile.svg">
+            </div>
+            <div class="message-data">
+                <p style="font-weight: bold;">Gerson Visoso Ocampo</p>
+                <a style="font-weight: lighter;">offline</a>
+            </div>
+        </div>
+     </div>
+     <div class="message-content list"></div>
+     <div class="message-content send"></div>
 </div>
