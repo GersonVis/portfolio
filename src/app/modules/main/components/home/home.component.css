@@ -252,6 +252,7 @@ path:hover::after{
     height: 40%;
     width: 100%;
     margin-top: 64px;
+    box-sizing: border-box;
 }
 
 
@@ -264,9 +265,12 @@ path:hover::after{
 }
 
 .text-msg-ok{
-    margin-top: 5%;
-    margin-left: 10%;
-    margin-right: 24px
+   display: flex;
+   align-items: center;
+   width: 40%;
+   height: 100%;
+   flex-direction: column;
+   padding-top: 24px;
 }
 
 /*sprites*/

@@ -12,25 +12,30 @@
                     FULLSTACK
                 </div>
             </div>
-            <div class="content-msg-ok" *ngIf="!boolMessageSend">
-                    <div class="text-msg-ok">
-                        <p style="text-align: center">Mensaje</p>
+            <div class="content-msg-ok" *ngIf="boolMessageSend">
+                <div class="text-msg-ok">
+                    <div style="display: flex; justify-content: center; align-items: center;" *ngIf="!boolTextMsg">
+                        <mat-spinner style="width: 50px; height: 50px;"></mat-spinner>
+                    </div>
+                    <div *ngIf="boolTextMsg">
+                        <p style="text-align: center" >Mensaje</p>
                         <div style="font-size: 24pt;" class="priority-higth">Enviado</div>
                     </div>
-                    <div class="sprite-msg-ok">
-                        <img id="imgSend"src="assets/images/hermessecuencia.png">
-                    </div>
+                </div>
+
+                <div class="sprite-msg-ok">
+                    <img id="imgSend" src="assets/images/hermessecuencia.png">
+                </div>
             </div>
-            <div class="content-chat-principal" *ngIf="!boolMessageSend==false" #divMessageSend>
-                <div class="chat"  >
+            <div class="content-chat-principal" *ngIf="!boolMessageSend" #divMessageSend>
+                <div class="chat">
                     <form [formGroup]="chatForms" style="min-width: 100%; display: flex">
-                        <div class="content-inpt-name" 
-                        [ngClass]="{'content-inpt-active': inputContentNameData.classBoolean.active}">
-                            <input id="userEmail" matInput type="text" formControlName="email" placeholder="Escribe tu correo"
-                            class="text-chat-name"
-                            (input)="evtInputEmail($event)"
-                           [ngClass]="{'invalite-email': inputEmailData.classBoolean.invalidate.state}"
-                            #inputEmail>
+                        <div class="content-inpt-name"
+                            [ngClass]="{'content-inpt-active': inputContentNameData.classBoolean.active}">
+                            <input id="userEmail" matInput type="text" formControlName="email"
+                                placeholder="Escribe tu correo" class="text-chat-name" (input)="evtInputEmail($event)"
+                                [ngClass]="{'invalite-email': inputEmailData.classBoolean.invalidate.state}"
+                                #inputEmail>
                         </div>
                         <input matInput type="text" formControlName="message" placeholder="Escribe un mensaje"
                             class="text-chat" (focus)="evtFocusMesage($event)">
