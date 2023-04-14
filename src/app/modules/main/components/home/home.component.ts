@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { sendOk } from 'src/app/modules/shared/reducers/home/home.actions';
+import { DataHome } from 'src/app/modules/shared/reducers/home/home.reducer';
+
 
 
 @Component({
@@ -17,9 +19,9 @@ import { sendOk } from 'src/app/modules/shared/reducers/home/home.actions';
 export class HomeComponent implements OnInit {
 
   //reducer
-  count$: Observable<boolean>
-  sendOk() {
-    this.store.dispatch(sendOk());
+  count$: Observable<DataHome>
+  sendOk(dataHome: DataHome) {
+    this.store.dispatch(sendOk({ dataHome: dataHome}));
   }
 
 
@@ -73,7 +75,7 @@ export class HomeComponent implements OnInit {
   }
 
   constructor(private messageService: MessageService, private form: FormBuilder,
-    private store: Store<{ messageSend: boolean }>) {
+    private store: Store<{ messageSend: DataHome }>) {
     this.chatForms = this.form.group({
       message: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -136,6 +138,13 @@ export class HomeComponent implements OnInit {
     this.svgGlobal = document.getElementsByTagName('svg')[0]
     this.chargeMap(this.svgGlobal)
     this.inputNameWithJs = document.getElementById("nameUser")
+    let dataHome= {
+      message: "String",
+      email: "sd",
+      visible: true
+    }
+    this.sendOk(dataHome)
+    
   }
   optionMenu: string = "inicio"
   chargeMap(svg: any) {
@@ -152,8 +161,13 @@ export class HomeComponent implements OnInit {
     let main=this
     setTimeout(function(){
       main.boolTextMsg=true
-      main.sendOk()
-    }, 3000)
+      let dataHome= {
+        message: "String",
+        email: "sd",
+        visible: true
+      }
+      main.sendOk(dataHome)
+    }, 500)
   }
 
   evtImgRun(){

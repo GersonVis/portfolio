@@ -2,7 +2,7 @@
 <div *ngIf="isVisible" class="parent" (click)="showMessages($event)">
   
 </div>
-<div  *ngIf="count$??false|async" class="parent-message">
+<div  *ngIf="true" class="parent-message">
      <div class="message-content perfil">
         <div id="carduser">
             <div class="content-profile-img" >
@@ -19,7 +19,7 @@
         <div class="message-scroll">
             <div class="message-rect">
                 <div class="message-date">4:00 pm</div>
-                <div class="message-data">Hola mi nombre es Juan, me gustaría contactar contigo para una oferta laboral</div>
+                <div class="message-data">{{count$.email}}</div>
             </div>
             <div class="message-accepted">
                 <div style="width: 100%; text-align: start; margin-bottom: 14px;" class="message-date">4:00 pm</div>
