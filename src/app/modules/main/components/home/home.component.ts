@@ -2,12 +2,28 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { MessageService } from 'src/app/modules/shared/services/message.service';
 
+import { Observable } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+
+import { sendOk } from 'src/app/modules/shared/reducers/home/home.actions';
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  //reducer
+  count$: Observable<boolean>
+  sendOk() {
+    this.store.dispatch(sendOk());
+  }
+
+
+  //fin reducer
   
   boolMessageSend: boolean = false
   boolTextMsg: boolean = false
@@ -56,12 +72,15 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  constructor(private messageService: MessageService, private form: FormBuilder) {
+  constructor(private messageService: MessageService, private form: FormBuilder,
+    private store: Store<{ messageSend: boolean }>) {
     this.chatForms = this.form.group({
       message: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
     })
 
+    this.count$ = store.select('messageSend');
+   
   }
   toString(data: any): string {
     return data
@@ -125,16 +144,18 @@ export class HomeComponent implements OnInit {
       this.eventsSVG(element)
     });
   }
-  
-  
+  //reducers
+  //end reducers
 
   //visual functions
   messageSendOk(){
     let main=this
     setTimeout(function(){
       main.boolTextMsg=true
+      main.sendOk()
     }, 3000)
   }
+
   evtImgRun(){
     this.boolMessageSend=true
   }

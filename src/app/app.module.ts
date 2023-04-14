@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainModule } from './modules/main/main.module';
+import { StoreModule } from '@ngrx/store';
+import { homeReducer } from './modules/shared/reducers/home/home.reducer';
+
+
 
 
 
@@ -20,6 +24,7 @@ import { MainModule } from './modules/main/main.module';
     AppRoutingModule,
     MainModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot({ messageSend: homeReducer}),
   ],
   providers: [
    

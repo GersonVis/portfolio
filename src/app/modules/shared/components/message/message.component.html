@@ -1,7 +1,8 @@
-<div *ngIf="isVisible" class="parent" (click)="showMessages($event)">
 
+<div *ngIf="isVisible" class="parent" (click)="showMessages($event)">
+  
 </div>
-<div  *ngIf="!isVisible" class="parent-message">
+<div  *ngIf="count$??false|async" class="parent-message">
      <div class="message-content perfil">
         <div id="carduser">
             <div class="content-profile-img" >
