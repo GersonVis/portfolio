@@ -12,9 +12,6 @@ import { homeReducer } from './modules/shared/reducers/home/home.reducer';
 
 
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +21,7 @@ import { homeReducer } from './modules/shared/reducers/home/home.reducer';
     AppRoutingModule,
     MainModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({ messageSend: homeReducer}),
+    StoreModule.forRoot({ messageSend: homeReducer }),
   ],
   providers: [
    

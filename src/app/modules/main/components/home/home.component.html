@@ -3,13 +3,13 @@
     <div class="content-principal">
         <div class="home left">
             <div class="home-content-info">
-                <div class="info-home">
+                <div class="info-home" >
                     <p>Bienvenido&nbsp;
                         <br>Mi nombre es <b>Gerson</b>
                     </p>
                 </div>
-                <div class="stack">
-                    FULLSTACK
+                <div class="stack" (click)="sendOk()">
+                    {{ count$ | async }} FULLSTACK
                 </div>
             </div>
             <div class="content-msg-ok"  *ngIf="boolMessageSend">

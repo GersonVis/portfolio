@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import { sendOk } from 'src/app/modules/shared/reducers/home/home.actions';
+import {  sendOk } from 'src/app/modules/shared/reducers/home/home.actions';
+import { Prueba } from 'src/app/modules/shared/reducers/models/scoreboard.model';
 
 
 @Component({
@@ -17,10 +18,11 @@ import { sendOk } from 'src/app/modules/shared/reducers/home/home.actions';
 export class HomeComponent implements OnInit {
 
   //reducer
-  count$: Observable<boolean>
+  count$: Observable<Prueba>
   sendOk() {
-    this.store.dispatch(sendOk());
+    this.store.dispatch(sendOk({nombre: "cambiado"}));
   }
+
 
 
   //fin reducer
@@ -73,14 +75,14 @@ export class HomeComponent implements OnInit {
   }
 
   constructor(private messageService: MessageService, private form: FormBuilder,
-    private store: Store<{ messageSend: boolean }>) {
+    private store: Store<{ messageSend: Prueba }>) {
     this.chatForms = this.form.group({
       message: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
     })
 
     this.count$ = store.select('messageSend');
-   
+    store.dispatch(sendOk({nombre: "nuecooo nombre"}))
   }
   toString(data: any): string {
     return data

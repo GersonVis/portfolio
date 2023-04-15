@@ -2,7 +2,7 @@
 <div *ngIf="isVisible" class="parent" (click)="showMessages($event)">
   
 </div>
-<div  *ngIf="count$??false|async" class="parent-message">
+<div  *ngIf="true" class="parent-message">
      <div class="message-content perfil">
         <div id="carduser">
             <div class="content-profile-img" >
@@ -10,7 +10,7 @@
             </div>
             <div class="message-data">
                 <p style="font-weight: bold; padding-bottom: 0px; margin-bottom: 0px;">Gerson Visoso Ocampo</p>
-                <a style="font-weight: lighter;">offline</a>
+                <a style="font-weight: lighter;">{{message$|async}}offline</a>
             </div>
             
         </div>

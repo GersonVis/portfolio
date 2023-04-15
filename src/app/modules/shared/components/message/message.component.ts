@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { Prueba } from '../../reducers/models/scoreboard.model';
+import { selectNombre } from '../../reducers/selectors/home.selector';
 
 @Component({
   selector: 'app-message',
@@ -8,17 +10,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit{
-   count$: Observable<number>
-
+ 
+   message$: Observable<String>
    isVisible: Boolean = true
    showMessages(event: any){
     this.isVisible=false
    }
-   constructor(private store: Store<{ messageSend: number }>){
-      this.count$ = store.select('messageSend');
-      console.log(this.count$)
+   constructor(private store: Store<{ messageSend: Prueba }>){
+        this.message$ = this.store.select(selectNombre);
    }
   ngOnInit(): void {
-    this.count$ = this.store.select('messageSend');
+    this.store.select(selectNombre).subscribe((data)=>{
+      console.log(data)
+    })
   }
 }
