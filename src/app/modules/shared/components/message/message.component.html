@@ -1,18 +1,33 @@
-<div *ngIf="!isVisible" class="parent" (click)="showMessages($event)">
 
+<div *ngIf="isVisible" class="parent" (click)="showMessages($event)">
+  
 </div>
-<div  *ngIf="isVisible" class="parent-message">
+<div  *ngIf="true" class="parent-message">
      <div class="message-content perfil">
         <div id="carduser">
             <div class="content-profile-img" >
                 <img id="img-profile" src="assets/icons/profile.svg">
             </div>
             <div class="message-data">
-                <p style="font-weight: bold;">Gerson Visoso Ocampo</p>
-                <a style="font-weight: lighter;">offline</a>
+                <p style="font-weight: bold; padding-bottom: 0px; margin-bottom: 0px;">Gerson Visoso Ocampo</p>
+                <a style="font-weight: lighter;">{{message$|async}}offline</a>
+            </div>
+            
+        </div>
+     </div>
+     <div class="message-content list">
+        <div class="message-scroll">
+            <div class="message-rect">
+                <div class="message-date">4:00 pm</div>
+                <div class="message-data">{{count$.email}}</div>
+            </div>
+            <div class="message-accepted">
+                <div style="width: 100%; text-align: start; margin-bottom: 14px;" class="message-date">4:00 pm</div>
+                <img id="imgaccepted"src="assets/images/profileaccepted.png">
+                <a class="message-description">EN UN MOMENTO</a>
+                <a class="message-description-down">ME PONDRÉ EN CONTACTO</a>
             </div>
         </div>
      </div>
-     <div class="message-content list"></div>
      <div class="message-content send"></div>
 </div>

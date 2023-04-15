@@ -1,5 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { MessageService } from 'src/app/modules/shared/services/message.service';
+
+import { Observable } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+
+<<<<<<< HEAD
+import {  sendOk } from 'src/app/modules/shared/reducers/home/home.actions';
+import { Prueba } from 'src/app/modules/shared/reducers/models/scoreboard.model';
+=======
+import { sendOk } from 'src/app/modules/shared/reducers/home/home.actions';
+import { DataHome } from 'src/app/modules/shared/reducers/home/home.reducer';
+
+>>>>>>> 5fbf54e1820f82ce112ff8476591bc05360d2af0
+
 
 @Component({
   selector: 'app-home',
@@ -7,21 +22,37 @@ import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  //reducer
+<<<<<<< HEAD
+  count$: Observable<Prueba>
+  sendOk() {
+    this.store.dispatch(sendOk({nombre: "cambiado"}));
+=======
+  count$: Observable<DataHome>
+  sendOk(dataHome: DataHome) {
+    this.store.dispatch(sendOk({ dataHome: dataHome}));
+>>>>>>> 5fbf54e1820f82ce112ff8476591bc05360d2af0
+  }
+
+
+
+  //fin reducer
+  
+  boolMessageSend: boolean = false
+  boolTextMsg: boolean = false
   svgGlobal: any
   countriesOn: Array<any> = []
   infoRectBoolean: boolean = false
   chatForms: FormGroup
-  ger: any = {
-    nombre: "gerson"
-  }
+  inputNameWithJs: any 
+
   @ViewChild('rectInfo') rectInfo: any
   @ViewChild('btnSend') btnSend: any
   @ViewChild('inputMessage') inputMessage: any
   @ViewChild('inputEmail') inputEmail: any
   @ViewChild('divMessageSend') divMessageSend: any
-  boolMessageSend: boolean= false
-
-  inputNameWithJs: any
+  
   inputNameData: any = {
     style: {
       inactive: "visibility: hidden; width: 0px"
@@ -30,9 +61,7 @@ export class HomeComponent implements OnInit {
       active: false
     }
   }
-  toString(data: any): string {
-    return data
-  }
+
   inputContentNameData: any = {
     style: {
       inactive: "visibility: hidden; width: 0px"
@@ -57,18 +86,26 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  constructor(private form: FormBuilder) {
+  constructor(private messageService: MessageService, private form: FormBuilder,
+<<<<<<< HEAD
+    private store: Store<{ messageSend: Prueba }>) {
+=======
+    private store: Store<{ messageSend: DataHome }>) {
+>>>>>>> 5fbf54e1820f82ce112ff8476591bc05360d2af0
     this.chatForms = this.form.group({
       message: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
     })
 
+    this.count$ = store.select('messageSend');
+    store.dispatch(sendOk({nombre: "nuecooo nombre"}))
   }
-
+  toString(data: any): string {
+    return data
+  }
   //events
   evtFocusMesage(event: any) {
     this.inputContentNameData.classBoolean.active = true
-    console.log(this.chatForms.get("email")?.errors)
     if (!this.validateEmail()) {
       this.inputEmail.nativeElement.focus()
     }
@@ -91,21 +128,39 @@ export class HomeComponent implements OnInit {
 
   clickSend(evt: any) {
     let data = {
-      message: this.chatForms.get("message")?.value,
-      email: this.chatForms.get("email")?.value
+      content: this.chatForms.get("message")?.value,
+      name: this.chatForms.get("email")?.value
     }
     if (this.chatForms.status == "VALID") {
-      this.messageSendOk()
+      this.onSave(data)
     }
   }
-  messageSendOk(){
-    this.boolMessageSend=true
-   // this.divMessageSend.nativeElement
+  onSave(data: any){
+     this.showChargeSendMsg()
+     this.messageService.setMessage(data).subscribe( (response: any)=>{
+      let header=response.header
+      let data=response.data
+      if(header.state){
+        this.messageSendOk()
+      }
+     })
   }
+  showChargeSendMsg(){
+    this.boolMessageSend=true
+  }
+  
+
   ngOnInit(): void {
     this.svgGlobal = document.getElementsByTagName('svg')[0]
     this.chargeMap(this.svgGlobal)
     this.inputNameWithJs = document.getElementById("nameUser")
+    let dataHome= {
+      message: "String",
+      email: "sd",
+      visible: true
+    }
+    this.sendOk(dataHome)
+    
   }
   optionMenu: string = "inicio"
   chargeMap(svg: any) {
@@ -113,6 +168,26 @@ export class HomeComponent implements OnInit {
     items.forEach(element => {
       this.eventsSVG(element)
     });
+  }
+  //reducers
+  //end reducers
+
+  //visual functions
+  messageSendOk(){
+    let main=this
+    setTimeout(function(){
+      main.boolTextMsg=true
+      let dataHome= {
+        message: "String",
+        email: "sd",
+        visible: true
+      }
+      main.sendOk(dataHome)
+    }, 500)
+  }
+
+  evtImgRun(){
+    this.boolMessageSend=true
   }
   eventsSVG(item: any) {
     let main = this
@@ -162,4 +237,8 @@ export class HomeComponent implements OnInit {
     }
   }
 
+}
+export interface Response{
+  header: any,
+  data: any
 }
