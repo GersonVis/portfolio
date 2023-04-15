@@ -5,10 +5,9 @@ import { Prueba, initialState } from '../models/scoreboard.model';
 
 
 
-
-
 export const homeReducer = createReducer(
   initialState,
+
   on(setMessage, (state, action) =>  {
     return {...state, nombre: action.message}
   }),
@@ -17,5 +16,4 @@ export const homeReducer = createReducer(
   }),
   on(setVisible, (state, action) =>  {
     return {...state, nombre: action.visible}
-  }),
-);
+  }))

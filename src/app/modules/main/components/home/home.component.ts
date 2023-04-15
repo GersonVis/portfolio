@@ -6,8 +6,14 @@ import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
+<<<<<<< HEAD
 import {  sendOk } from 'src/app/modules/shared/reducers/home/home.actions';
 import { Prueba } from 'src/app/modules/shared/reducers/models/scoreboard.model';
+=======
+import { sendOk } from 'src/app/modules/shared/reducers/home/home.actions';
+import { DataHome } from 'src/app/modules/shared/reducers/home/home.reducer';
+
+>>>>>>> 5fbf54e1820f82ce112ff8476591bc05360d2af0
 
 
 @Component({
@@ -18,9 +24,15 @@ import { Prueba } from 'src/app/modules/shared/reducers/models/scoreboard.model'
 export class HomeComponent implements OnInit {
 
   //reducer
+<<<<<<< HEAD
   count$: Observable<Prueba>
   sendOk() {
     this.store.dispatch(sendOk({nombre: "cambiado"}));
+=======
+  count$: Observable<DataHome>
+  sendOk(dataHome: DataHome) {
+    this.store.dispatch(sendOk({ dataHome: dataHome}));
+>>>>>>> 5fbf54e1820f82ce112ff8476591bc05360d2af0
   }
 
 
@@ -75,7 +87,11 @@ export class HomeComponent implements OnInit {
   }
 
   constructor(private messageService: MessageService, private form: FormBuilder,
+<<<<<<< HEAD
     private store: Store<{ messageSend: Prueba }>) {
+=======
+    private store: Store<{ messageSend: DataHome }>) {
+>>>>>>> 5fbf54e1820f82ce112ff8476591bc05360d2af0
     this.chatForms = this.form.group({
       message: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -138,6 +154,13 @@ export class HomeComponent implements OnInit {
     this.svgGlobal = document.getElementsByTagName('svg')[0]
     this.chargeMap(this.svgGlobal)
     this.inputNameWithJs = document.getElementById("nameUser")
+    let dataHome= {
+      message: "String",
+      email: "sd",
+      visible: true
+    }
+    this.sendOk(dataHome)
+    
   }
   optionMenu: string = "inicio"
   chargeMap(svg: any) {
@@ -154,8 +177,13 @@ export class HomeComponent implements OnInit {
     let main=this
     setTimeout(function(){
       main.boolTextMsg=true
-      main.sendOk()
-    }, 3000)
+      let dataHome= {
+        message: "String",
+        email: "sd",
+        visible: true
+      }
+      main.sendOk(dataHome)
+    }, 500)
   }
 
   evtImgRun(){

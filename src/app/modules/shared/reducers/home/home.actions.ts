@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { Prueba } from '../models/scoreboard.model';
 
 
 export const setEmail = createAction('SetEmail',
