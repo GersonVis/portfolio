@@ -1,35 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Prueba } from '../../reducers/models/scoreboard.model';
-import { selectNombre } from '../../reducers/selectors/home.selector';
+import { Prueba } from '../../reducers/home/home.model';
+import { getDate, getEmail, getMessage, getVisible } from '../../reducers/home/home.selector';
 
-import { state } from '@angular/animations';
-import { DataHome } from '../../reducers/home/home.reducer';
+
+
 
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.css']
 })
-export class MessageComponent implements OnInit{
-
- 
-   message$: Observable<String>
+export class MessageComponent implements OnInit {
 
 
-   isVisible: Boolean = true
-   showMessages(event: any){
-    this.isVisible=false
-   }
+  message$: Observable<String> = new Observable<String>
+  email$: Observable<String> = new Observable<String>
+  visible$: Observable<boolean> = new Observable<boolean>
+  date$: Observable<Date> = new Observable<Date>
 
-   constructor(private store: Store<{ messageSend: Prueba }>){
-        this.message$ = this.store.select(selectNombre);
-   }
+  isVisible: Boolean = true
+  showMessages(event: any) {
+    this.isVisible = false
+  }
+
+  constructor(private store: Store<{ messageSend: Prueba }>) {
+    this.redux()
+  }
   ngOnInit(): void {
-    this.store.select(selectNombre).subscribe((data)=>{
-      console.log(data)
-    })
-
+    this.redux()
+  }
+  redux() {
+    this.message$ = this.store.select(getMessage);
+    this.email$ = this.store.select(getEmail);
+    this.visible$ = this.store.select(getVisible);
+    this.date$ = this.store.select(getDate)
   }
 }

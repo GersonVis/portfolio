@@ -6,14 +6,9 @@ import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-<<<<<<< HEAD
-import {  sendOk } from 'src/app/modules/shared/reducers/home/home.actions';
-import { Prueba } from 'src/app/modules/shared/reducers/models/scoreboard.model';
-=======
-import { sendOk } from 'src/app/modules/shared/reducers/home/home.actions';
-import { DataHome } from 'src/app/modules/shared/reducers/home/home.reducer';
 
->>>>>>> 5fbf54e1820f82ce112ff8476591bc05360d2af0
+import { setData, setVisible } from 'src/app/modules/shared/reducers/home/home.actions';
+import { Prueba } from 'src/app/modules/shared/reducers/home/home.model';
 
 
 @Component({
@@ -24,15 +19,13 @@ import { DataHome } from 'src/app/modules/shared/reducers/home/home.reducer';
 export class HomeComponent implements OnInit {
 
   //reducer
-<<<<<<< HEAD
-  count$: Observable<Prueba>
-  sendOk() {
-    this.store.dispatch(sendOk({nombre: "cambiado"}));
-=======
-  count$: Observable<DataHome>
-  sendOk(dataHome: DataHome) {
-    this.store.dispatch(sendOk({ dataHome: dataHome}));
->>>>>>> 5fbf54e1820f82ce112ff8476591bc05360d2af0
+  data$:Observable<Prueba>
+
+  setData(data: any){
+      this.store.dispatch(setData({email: data.email, message: data.message, date: new Date()}))
+  }
+  setVisible(data: any){
+      this.store.dispatch(setVisible({visible: data.visible}))
   }
 
 
@@ -87,18 +80,13 @@ export class HomeComponent implements OnInit {
   }
 
   constructor(private messageService: MessageService, private form: FormBuilder,
-<<<<<<< HEAD
     private store: Store<{ messageSend: Prueba }>) {
-=======
-    private store: Store<{ messageSend: DataHome }>) {
->>>>>>> 5fbf54e1820f82ce112ff8476591bc05360d2af0
+
     this.chatForms = this.form.group({
       message: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
     })
-
-    this.count$ = store.select('messageSend');
-    store.dispatch(sendOk({nombre: "nuecooo nombre"}))
+    this.data$ = store.select('messageSend');
   }
   toString(data: any): string {
     return data
@@ -127,10 +115,12 @@ export class HomeComponent implements OnInit {
   }
 
   clickSend(evt: any) {
+   
     let data = {
       content: this.chatForms.get("message")?.value,
       name: this.chatForms.get("email")?.value
     }
+    
     if (this.chatForms.status == "VALID") {
       this.onSave(data)
     }
@@ -139,9 +129,10 @@ export class HomeComponent implements OnInit {
      this.showChargeSendMsg()
      this.messageService.setMessage(data).subscribe( (response: any)=>{
       let header=response.header
-      let data=response.data
+      let data=response.data[0]
+      console.log("response: ", data)
       if(header.state){
-        this.messageSendOk()
+        this.messageSendOk({email: data.name, message: data.content})
       }
      })
   }
@@ -159,7 +150,7 @@ export class HomeComponent implements OnInit {
       email: "sd",
       visible: true
     }
-    this.sendOk(dataHome)
+    
     
   }
   optionMenu: string = "inicio"
@@ -173,17 +164,15 @@ export class HomeComponent implements OnInit {
   //end reducers
 
   //visual functions
-  messageSendOk(){
+  messageSendOk(data: any){
     let main=this
+    console.log("data any: ", data)
     setTimeout(function(){
       main.boolTextMsg=true
-      let dataHome= {
-        message: "String",
-        email: "sd",
-        visible: true
-      }
-      main.sendOk(dataHome)
-    }, 500)
+      console.log("data: ", data)
+      main.setData({email: data.email, message: data.message})
+      main.setVisible({visible: true})
+    }, 100)
   }
 
   evtImgRun(){

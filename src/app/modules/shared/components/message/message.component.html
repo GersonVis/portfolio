@@ -2,7 +2,7 @@
 <div *ngIf="isVisible" class="parent" (click)="showMessages($event)">
   
 </div>
-<div  *ngIf="true" class="parent-message">
+<div  *ngIf="visible$|async" class="parent-message">
      <div class="message-content perfil">
         <div id="carduser">
             <div class="content-profile-img" >
@@ -10,7 +10,7 @@
             </div>
             <div class="message-data">
                 <p style="font-weight: bold; padding-bottom: 0px; margin-bottom: 0px;">Gerson Visoso Ocampo</p>
-                <a style="font-weight: lighter;">{{message$|async}}offline</a>
+                <a style="font-weight: lighter;">offline</a>
             </div>
             
         </div>
@@ -19,7 +19,7 @@
         <div class="message-scroll">
             <div class="message-rect">
                 <div class="message-date">4:00 pm</div>
-                <div class="message-data">{{count$.email}}</div>
+                <div class="message-data">{{message$|async}}</div>
             </div>
             <div class="message-accepted">
                 <div style="width: 100%; text-align: start; margin-bottom: 14px;" class="message-date">4:00 pm</div>
@@ -29,5 +29,12 @@
             </div>
         </div>
      </div>
-     <div class="message-content send"></div>
+     <div class="message-content send">
+        <div class="mesage-send">
+            <input placeholder="Escribe un mensaje" class="input-message">
+            <div class="content-img-message">
+                <img class="img-message" src="assets/icons/send-fill.svg">
+            </div>
+        </div>
+     </div>
 </div>
