@@ -1,19 +1,15 @@
 import { createReducer, on } from '@ngrx/store';
-import { setMessage, setEmail, setVisible } from './home.actions';
+import {  setVisible, setData } from './home.actions';
 import { state } from '@angular/animations';
-import { Prueba, initialState } from '../models/scoreboard.model';
+import { Prueba, initialState } from './home.model';
 
 
 
 export const homeReducer = createReducer(
   initialState,
-
-  on(setMessage, (state, action) =>  {
-    return {...state, nombre: action.message}
-  }),
-  on(setEmail, (state, action) =>  {
-    return {...state, nombre: action.email}
+  on(setData, (state, action) =>  {
+    return {...state, visible: true, message: action.message, email: action.email, date: action.date}
   }),
   on(setVisible, (state, action) =>  {
-    return {...state, nombre: action.visible}
+    return {...state, visible: true}
   }))

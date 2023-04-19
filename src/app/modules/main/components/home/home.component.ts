@@ -6,14 +6,14 @@ import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-<<<<<<< HEAD
-import {  sendOk } from 'src/app/modules/shared/reducers/home/home.actions';
-import { Prueba } from 'src/app/modules/shared/reducers/models/scoreboard.model';
-=======
-import { sendOk } from 'src/app/modules/shared/reducers/home/home.actions';
-import { DataHome } from 'src/app/modules/shared/reducers/home/home.reducer';
 
->>>>>>> 5fbf54e1820f82ce112ff8476591bc05360d2af0
+import { setData, setVisible } from 'src/app/modules/shared/reducers/home/home.actions';
+import { Prueba } from 'src/app/modules/shared/reducers/home/home.model';
+import { UserService } from 'src/app/modules/shared/services/user.service';
+import { UserMessageService } from 'src/app/modules/shared/services/usermessage.service';
+import { IUserMessage } from 'src/app/modules/shared/models/usermessage.model';
+import { IMessage } from 'src/app/modules/shared/models/message.model';
+import { IUser } from 'src/app/modules/shared/models/user.model';
 
 
 @Component({
@@ -22,37 +22,36 @@ import { DataHome } from 'src/app/modules/shared/reducers/home/home.reducer';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  userMessage: IUserMessage 
 
   //reducer
-<<<<<<< HEAD
-  count$: Observable<Prueba>
-  sendOk() {
-    this.store.dispatch(sendOk({nombre: "cambiado"}));
-=======
-  count$: Observable<DataHome>
-  sendOk(dataHome: DataHome) {
-    this.store.dispatch(sendOk({ dataHome: dataHome}));
->>>>>>> 5fbf54e1820f82ce112ff8476591bc05360d2af0
+  data$: Observable<Prueba>
+
+  setData(data: any) {
+    this.store.dispatch(setData({ email: data.email, message: data.message, date: new Date() }))
+  }
+  setVisible(data: any) {
+    this.store.dispatch(setVisible({ visible: data.visible }))
   }
 
 
 
   //fin reducer
-  
+
   boolMessageSend: boolean = false
   boolTextMsg: boolean = false
   svgGlobal: any
   countriesOn: Array<any> = []
   infoRectBoolean: boolean = false
   chatForms: FormGroup
-  inputNameWithJs: any 
+  inputNameWithJs: any
 
   @ViewChild('rectInfo') rectInfo: any
   @ViewChild('btnSend') btnSend: any
   @ViewChild('inputMessage') inputMessage: any
   @ViewChild('inputEmail') inputEmail: any
   @ViewChild('divMessageSend') divMessageSend: any
-  
+
   inputNameData: any = {
     style: {
       inactive: "visibility: hidden; width: 0px"
@@ -86,19 +85,31 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  constructor(private messageService: MessageService, private form: FormBuilder,
-<<<<<<< HEAD
-    private store: Store<{ messageSend: Prueba }>) {
-=======
-    private store: Store<{ messageSend: DataHome }>) {
->>>>>>> 5fbf54e1820f82ce112ff8476591bc05360d2af0
+  constructor(
+    private userMessageService: UserMessageService,
+    private messageService: MessageService, private form: FormBuilder,
+    private store: Store<{ messageSend: Prueba }>,
+    private userService: UserService) {
+
     this.chatForms = this.form.group({
       message: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
     })
-
-    this.count$ = store.select('messageSend');
-    store.dispatch(sendOk({nombre: "nuecooo nombre"}))
+    this.data$ = store.select('messageSend');
+    let message:IMessage = {
+      id: 2,
+      message: "",
+      messagedate: new Date()
+    } 
+    let user: IUser ={
+      user_id: 0,
+      email: ""
+    }
+    this.userMessage={
+      message: message,
+      user_send: user,
+      user_recv: user
+    }
   }
   toString(data: any): string {
     return data
@@ -127,40 +138,36 @@ export class HomeComponent implements OnInit {
   }
 
   clickSend(evt: any) {
-    let data = {
-      content: this.chatForms.get("message")?.value,
-      name: this.chatForms.get("email")?.value
+    let main = this
+    let newData = {
+      message: this.chatForms.get("message")?.value,
+      email: this.chatForms.get("email")?.value
     }
     if (this.chatForms.status == "VALID") {
-      this.onSave(data)
+      this.saveUser({ email: newData.email }, function (response: any) {
+        // console.log("response save user", response)
+        main.resultSaveUser({ response: response, messageData: newData })
+      })
     }
   }
-  onSave(data: any){
-     this.showChargeSendMsg()
-     this.messageService.setMessage(data).subscribe( (response: any)=>{
-      let header=response.header
-      let data=response.data
-      if(header.state){
-        this.messageSendOk()
-      }
-     })
+  resultSaveUser(pass: any) {
+    let header = pass.response.data.header
+    let user = pass.resposne.data.data[0]
+    if (header.state) {
+      this.userMessage["user_send"]=user
+      this.saveMessage({message: pass.messageData, user: user})
+    }
   }
-  showChargeSendMsg(){
-    this.boolMessageSend=true
+
+  showChargeSendMsg() {
+    this.boolMessageSend = true
   }
-  
+
 
   ngOnInit(): void {
     this.svgGlobal = document.getElementsByTagName('svg')[0]
     this.chargeMap(this.svgGlobal)
     this.inputNameWithJs = document.getElementById("nameUser")
-    let dataHome= {
-      message: "String",
-      email: "sd",
-      visible: true
-    }
-    this.sendOk(dataHome)
-    
   }
   optionMenu: string = "inicio"
   chargeMap(svg: any) {
@@ -173,21 +180,19 @@ export class HomeComponent implements OnInit {
   //end reducers
 
   //visual functions
-  messageSendOk(){
-    let main=this
-    setTimeout(function(){
-      main.boolTextMsg=true
-      let dataHome= {
-        message: "String",
-        email: "sd",
-        visible: true
-      }
-      main.sendOk(dataHome)
-    }, 500)
+  messageSendOk(data: any) {
+    let main = this
+    console.log("data any: ", data)
+    setTimeout(function () {
+      main.boolTextMsg = true
+      console.log("data: ", data)
+      main.setData({ email: data.email, message: data.message })
+      main.setVisible({ visible: true })
+    }, 100)
   }
 
-  evtImgRun(){
-    this.boolMessageSend=true
+  evtImgRun() {
+    this.boolMessageSend = true
   }
   eventsSVG(item: any) {
     let main = this
@@ -237,8 +242,35 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  //conections to services
+  saveUser(data: any, doAfter: any) {
+    this.userService.saveUser(data)
+      .subscribe(data => {
+        doAfter({ data: data })
+      })
+
+  }
+  saveMessage(data: any) {
+    let main = this
+    this.showChargeSendMsg()
+    this.messageService.setMessage(data.messageData).subscribe((response: any) => {
+      let header = response.header
+      let data = response.data[0]
+      this.userMessage["message"]=data
+      if (header.state) {
+        this.userMessageService.saveUserMessage(this.userMessage).subscribe((response: any)=>{
+            let header = response.header
+            if(header.state){
+              main.messageSendOk(data)
+            }
+        })
+        
+      }
+    })
+  }
+
 }
-export interface Response{
+export interface Response {
   header: any,
   data: any
 }
