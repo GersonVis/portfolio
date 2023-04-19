@@ -1,5 +1,5 @@
 
-<div *ngIf="isVisible" class="parent" (click)="showMessages($event)">
+<div *ngIf="isVisible && visible$|async" class="parent" (click)="showMessages($event)">
   
 </div>
 <div  *ngIf="visible$|async" class="parent-message">

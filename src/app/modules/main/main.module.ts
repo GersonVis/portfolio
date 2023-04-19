@@ -8,13 +8,18 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { ChatComponent } from '../chat/components/chat/chat.component';
+import { SidebarComponent } from '../chat/components/sidebar/sidebar.component';
+import { ListchatComponent } from '../chat/components/listchat/listchat.component';
 
 
 @NgModule({
   declarations: [
     MainComponent,
     HomeComponent,
+    ChatComponent,
+    SidebarComponent,
+    ListchatComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
   ],
   exports:[
     

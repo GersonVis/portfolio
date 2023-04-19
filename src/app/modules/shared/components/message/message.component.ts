@@ -20,6 +20,8 @@ export class MessageComponent implements OnInit {
   visible$: Observable<boolean> = new Observable<boolean>
   date$: Observable<Date> = new Observable<Date>
 
+ 
+
   isVisible: Boolean = true
   showMessages(event: any) {
     this.isVisible = false
