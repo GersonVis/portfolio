@@ -17,6 +17,7 @@ export class MessageService{
     }
     setMessage(data: any){
         const endPoint = `${base_url}/message/insert`
+        console.log(data)
         return this.http.post(endPoint, data)
     }
 }
