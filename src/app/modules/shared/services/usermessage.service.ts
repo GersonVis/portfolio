@@ -13,7 +13,7 @@ export class UserMessageService{
 
     }
     saveUserMessage(data:any){
-        let endpoint = `${base_uri}/message`
+        let endpoint = `${base_uri}/usermessage/test`
         return this.http.post(endpoint, data)
     }
 

@@ -14,6 +14,7 @@ import { UserMessageService } from 'src/app/modules/shared/services/usermessage.
 import { IUserMessage } from 'src/app/modules/shared/models/usermessage.model';
 import { IMessage } from 'src/app/modules/shared/models/message.model';
 import { IUser } from 'src/app/modules/shared/models/user.model';
+import { user_recv_principal } from 'src/app/environments/environment';
 
 
 @Component({
@@ -152,9 +153,10 @@ export class HomeComponent implements OnInit {
   }
   resultSaveUser(pass: any) {
     let header = pass.response.data.header
-    let user = pass.resposne.data.data[0]
+    let user = pass.response.data.data[0]
     if (header.state) {
       this.userMessage["user_send"]=user
+      
       this.saveMessage({message: pass.messageData, user: user})
     }
   }
@@ -253,12 +255,15 @@ export class HomeComponent implements OnInit {
   saveMessage(data: any) {
     let main = this
     this.showChargeSendMsg()
-    this.messageService.setMessage(data.messageData).subscribe((response: any) => {
+    this.messageService.setMessage(data.message).subscribe((response: any) => {
       let header = response.header
       let data = response.data[0]
-      this.userMessage["message"]=data
+      main.userMessage["message"]=data
+      console.log(JSON.stringify(main.userMessage))
       if (header.state) {
-        this.userMessageService.saveUserMessage(this.userMessage).subscribe((response: any)=>{
+        this.userMessage.user_recv = user_recv_principal
+        this.userMessageService.saveUserMessage(main.userMessage).subscribe((response: any)=>{
+        //    console.log("response: ",response)
             let header = response.header
             if(header.state){
               main.messageSendOk(data)
